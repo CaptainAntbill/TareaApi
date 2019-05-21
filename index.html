@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="css/bulma.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hello, world!</title>
+</head>
+<body>
+  <br>
+  <div class="container">
+  <div class="notification is-dark">
+    <strong>Dogs and Their Owners</strong>
+  </div>
+</div>
+    <div class="container">
+      <div class="notification is-primary">
+        <p class="subtitle is-5">Do you want see a beautiful Dog?</p>
+        <button class="button is-info" onclick="traer()">Click!</button>
+        <div class="container" class="mt-5" id="contenido">
+        </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="notification is-primary">
+      <p class="subtitle is-5">Do you want to meet the owner?</p>
+      <button class="button is-info" onclick="traer2()">Click!</button>
+      <div class="container" class="mt-5" id="contenido2">
+      </div>
+  </div>
+</div>
+    <script>
+        var contenido = document.querySelector('#contenido')
+        function traer() {
+            fetch(' https://dog.ceo/api/breeds/image/random ')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                contenido.innerHTML = `<center>
+                <img src="${data.message}" width="400px"></center>
+                `
+            })
+        }
+        var contenido2 = document.querySelector('#contenido2')
+       function traer2() {
+           fetch('https://randomuser.me/api/')
+           .then(res => res.json())
+           .then(data => {
+               console.log(data.results['0'])
+               contenido2.innerHTML = `
+               <center><img src="${data.results['0'].picture.large}" width="275px">
+               <p>Name: ${data.results['0'].name.last}</p><center>
+               `
+           })
+       }
+
+    </script>
+
+</body>
+</html>
